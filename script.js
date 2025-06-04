@@ -8,20 +8,18 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
-
-  const uniqueId = crypto.randomUUID();
-  this.uniqueBookID = function () {
-    return uniqueId;
-  };
+  this.id = crypto.randomUUID();
 }
 
 Book.prototype.addBookToLibrary = function () {
-  return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
+  const book = `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}, ID: ${this.id}`;
+  myLibrary.push(book);
 };
 
 const booKOne = new Book("Mockingjay", "Suzanne Collins", 390, "not read");
 
-console.log(booKOne.uniqueBookID());
+console.log(booKOne.addBookToLibrary());
 
 const bookTwo = new Book("Sample", "Sample", 200, "Sample");
-console.log(bookTwo.uniqueBookID());
+console.log(bookTwo.addBookToLibrary());
+console.log(myLibrary);
