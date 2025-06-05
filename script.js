@@ -12,7 +12,13 @@ function Book(title, author, pages, read) {
 }
 
 Book.prototype.addBookToLibrary = function () {
-  const book = `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}, ID: ${this.id}`;
+  const book = {
+    title: this.title,
+    author: this.author,
+    pages: this.pages,
+    read: this.read,
+    id: this.id,
+  };
   myLibrary.push(book);
 };
 
