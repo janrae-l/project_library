@@ -46,5 +46,11 @@ const loopAndDisplay = function (arr) {
     }
   });
 };
+console.log(loopAndDisplay(myLibrary));
 
 const newBook = document.querySelector(".new-book");
+const dialog = document.querySelector("dialog");
+
+newBook.addEventListener("click", () => {
+  dialog.showModal();
+});
