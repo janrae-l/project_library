@@ -38,10 +38,10 @@ const container = document.querySelector(".container");
 
 const loopAndDisplay = function (arr) {
   arr.forEach((element) => {
-    for (let index in element) {
+    for (let key in element) {
       const card = document.createElement("div");
       card.classList.add("card");
-      card.textContent = `${index} : ${element[index]}`;
+      card.textContent = `${key} : ${element[key]}`;
       container.appendChild(card);
     }
   });
