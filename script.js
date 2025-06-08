@@ -39,12 +39,19 @@ const container = document.querySelector(".container");
 
 const loopAndDisplay = function (arr) {
   arr.forEach((element) => {
+    const card = document.createElement("div");
+    const removeBtn = document.createElement("button");
+    removeBtn.classList.add("removeBtn");
+    removeBtn.textContent = "Remove Book";
+    card.appendChild(removeBtn);
+    card.classList.add("card");
+    card.dataset.unique = crypto.randomUUID();
+    container.appendChild(card);
     for (let key in element) {
-      const card = document.createElement("div");
-      card.classList.add("card");
-      card.dataset.unique = crypto.randomUUID();
-      card.textContent = `${key} : ${element[key]}`;
-      container.appendChild(card);
+      const details = document.createElement("p");
+      details.classList.add("details");
+      details.textContent = `${key} : ${element[key]}`;
+      card.appendChild(details);
     }
   });
 };
@@ -59,17 +66,12 @@ newBook.addEventListener("click", () => {
 
 const confirmBtn = document.querySelector(".confirmBtn");
 
-const title = document.querySelector("#title");
-const author = document.querySelector("#author");
-const pages = document.querySelector("#pages");
-const read = document.querySelector("#read");
-
 confirmBtn.addEventListener("click", (event) => {
   event.preventDefault();
-  const titleValue = title.value;
-  const authorValue = author.value;
-  const pagesValue = pages.value;
-  const readValue = read.value;
+  const titleValue = document.querySelector("#title").value;
+  const authorValue = document.querySelector("#author").value;
+  const pagesValue = document.querySelector("#pages").value;
+  const readValue = document.querySelector("#read").value;
   console.log(titleValue, authorValue, pagesValue, readValue);
   const bookInstance = new Book(titleValue, authorValue, pagesValue, readValue);
   bookInstance.addBookToLibrary();
