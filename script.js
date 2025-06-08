@@ -46,10 +46,5 @@ const loopAndDisplay = function (arr) {
     }
   });
 };
-//   for (let i = 0; i < element.length; i++) {
 
-//   }
-
-//   console.log(element);
-
-console.log(loopAndDisplay(myLibrary));
+const newBook = document.querySelector(".new-book");
