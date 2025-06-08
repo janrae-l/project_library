@@ -8,7 +8,7 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
-  this.id = crypto.randomUUID();
+  //this.id = crypto.randomUUID();
 }
 
 Book.prototype.addBookToLibrary = function () {
@@ -17,7 +17,7 @@ Book.prototype.addBookToLibrary = function () {
     author: this.author,
     pages: this.pages,
     read: this.read,
-    id: this.id,
+    //id: this.id,
   };
   myLibrary.push(book);
 };
@@ -42,6 +42,7 @@ const loopAndDisplay = function (arr) {
     for (let key in element) {
       const card = document.createElement("div");
       card.classList.add("card");
+      card.dataset.unique = crypto.randomUUID();
       card.textContent = `${key} : ${element[key]}`;
       container.appendChild(card);
     }
