@@ -28,6 +28,7 @@ console.log(booKOne.addBookToLibrary());
 
 const bookTwo = new Book("Sample", "Sample", 200, "Sample");
 console.log(bookTwo.addBookToLibrary());
+
 // console.log(myLibrary);
 
 //Use forEach for the array and display the contents in cards.
@@ -46,7 +47,7 @@ const loopAndDisplay = function (arr) {
     }
   });
 };
-console.log(loopAndDisplay(myLibrary));
+loopAndDisplay(myLibrary);
 
 const newBook = document.querySelector(".new-book");
 const dialog = document.querySelector("dialog");
@@ -55,6 +56,22 @@ newBook.addEventListener("click", () => {
   dialog.showModal();
 });
 
+const confirmBtn = document.querySelector(".confirmBtn");
+
 const title = document.querySelector("#title");
 const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
+const read = document.querySelector("#read");
+
+confirmBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  const titleValue = title.value;
+  const authorValue = author.value;
+  const pagesValue = pages.value;
+  const readValue = read.value;
+  console.log(titleValue, authorValue, pagesValue, readValue);
+  const bookInstance = new Book(titleValue, authorValue, pagesValue, readValue);
+  bookInstance.addBookToLibrary();
+  loopAndDisplay(myLibrary);
+  dialog.close();
+});
