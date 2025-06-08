@@ -37,7 +37,10 @@ Book.prototype.addBookToLibrary = function () {
 //Do I set a concrete card for the sample details first?
 const container = document.querySelector(".container");
 let card = document.createElement("div");
+card.classList.add("card");
+
 let removeBtn = document.createElement("button");
+removeBtn.classList.add("removeBtn");
 
 const loopAndDisplay = function (arr) {
   arr.forEach((element) => {
