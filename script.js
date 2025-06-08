@@ -54,3 +54,7 @@ const dialog = document.querySelector("dialog");
 newBook.addEventListener("click", () => {
   dialog.showModal();
 });
+
+const title = document.querySelector("#title");
+const author = document.querySelector("#author");
+const pages = document.querySelector("#pages");
