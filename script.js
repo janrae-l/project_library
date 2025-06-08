@@ -28,15 +28,28 @@ console.log(booKOne.addBookToLibrary());
 
 const bookTwo = new Book("Sample", "Sample", 200, "Sample");
 console.log(bookTwo.addBookToLibrary());
-console.log(myLibrary);
+// console.log(myLibrary);
 
 //Use forEach for the array and display the contents in cards.
 //1 card for each book
 //How do I display the books in each card?
 //Do I set a concrete card for the sample details first?
+const container = document.querySelector(".container");
+
 const loopAndDisplay = function (arr) {
   arr.forEach((element) => {
-    console.log(element);
+    for (let index in element) {
+      const card = document.createElement("div");
+      card.classList.add("card");
+      card.textContent = `${index} : ${element[index]}`;
+      container.appendChild(card);
+    }
   });
 };
+//   for (let i = 0; i < element.length; i++) {
+
+//   }
+
+//   console.log(element);
+
 console.log(loopAndDisplay(myLibrary));
