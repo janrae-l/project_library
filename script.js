@@ -22,37 +22,49 @@ Book.prototype.addBookToLibrary = function () {
   myLibrary.push(book);
 };
 
-// const booKOne = new Book("Mockingjay", "Suzanne Collins", 390, "not read");
+const booKOne = new Book("Mockingjay", "Suzanne Collins", 390, "not read");
 
-// console.log(booKOne.addBookToLibrary());
+console.log(booKOne.addBookToLibrary());
 
-// const bookTwo = new Book("Sample", "Sample", 200, "Sample");
-// console.log(bookTwo.addBookToLibrary());
+const bookTwo = new Book("Sample", "Sample", 200, "Sample");
+console.log(bookTwo.addBookToLibrary());
 
-// console.log(myLibrary);
+console.log(myLibrary);
 
 //Use forEach for the array and display the contents in cards.
 //1 card for each book
 //How do I display the books in each card?
 //Do I set a concrete card for the sample details first?
 const container = document.querySelector(".container");
-let card = document.createElement("div");
-card.classList.add("card");
-
-let removeBtn = document.createElement("button");
-removeBtn.classList.add("removeBtn");
 
 const loopAndDisplay = function (arr) {
   arr.forEach((element) => {
-    card = document.createElement("div");
+    const card = document.createElement("div");
     card.classList.add("card");
-    removeBtn = document.createElement("button");
+    const removeBtn = document.createElement("button");
     removeBtn.classList.add("removeBtn");
     removeBtn.textContent = "Remove Book";
     card.appendChild(removeBtn);
 
     card.dataset.unique = crypto.randomUUID();
     container.appendChild(card);
+
+    const removeEvent = function () {
+      removeBtn.addEventListener("click", (e) => {
+        const removeId = card.dataset["unique"];
+        console.log(removeId);
+
+        const cardList = document.querySelectorAll(".card");
+        console.log(cardList);
+
+        cardList.forEach((card) => {
+          if (card.dataset.unique === removeId) {
+            card.remove();
+          }
+        });
+      });
+    };
+    removeEvent();
     for (let key in element) {
       const details = document.createElement("p");
       details.classList.add("details");
@@ -63,44 +75,37 @@ const loopAndDisplay = function (arr) {
 };
 loopAndDisplay(myLibrary);
 
+const bigContainter = document.querySelector("body");
+
 const newBook = document.querySelector(".new-book");
+newBook.setAttribute("id", "newBook");
 const dialog = document.querySelector("dialog");
 
-newBook.addEventListener("click", () => {
-  dialog.showModal();
-});
-
 const confirmBtn = document.querySelector(".confirmBtn");
+confirmBtn.setAttribute("id", "confirmBtn");
 
-confirmBtn.addEventListener("click", (event) => {
-  event.preventDefault();
-  const titleValue = document.querySelector("#title").value;
-  const authorValue = document.querySelector("#author").value;
-  const pagesValue = document.querySelector("#pages").value;
-  const readValue = document.querySelector("#read").value;
+bigContainter.addEventListener("click", (event) => {
+  if (event.target.id === "newBook") {
+    console.log(event.target.textContent);
+    dialog.showModal();
+  } else if (event.target.id === "confirmBtn") {
+    console.log(event.target.textContent);
+    event.preventDefault();
+    const titleValue = document.querySelector("#title").value;
+    const authorValue = document.querySelector("#author").value;
+    const pagesValue = document.querySelector("#pages").value;
+    const readValue = document.querySelector("#read").value;
 
-  const bookInstance = new Book(titleValue, authorValue, pagesValue, readValue);
-  bookInstance.addBookToLibrary();
-  loopAndDisplay(myLibrary);
-  dialog.close();
+    const bookInstance = new Book(
+      titleValue,
+      authorValue,
+      pagesValue,
+      readValue
+    );
+    bookInstance.addBookToLibrary();
+    loopAndDisplay(myLibrary);
+    dialog.close();
+  } else if (event.target.id === "removeBtn") {
+    console.log(event.target.textContent);
+  }
 });
-
-removeBtn.addEventListener("click", (event) => {
-  const removeId = card.dataset["unique"];
-  console.log(removeId);
-  const cardList = document.querySelectorAll(".card");
-  console.log(cardList);
-
-  cardList.forEach((card) => {
-    if (card.dataset.unique === removeId) {
-      card.remove();
-    }
-  });
-});
-
-const removeBtns = document.querySelectorAll(".removeBtn");
-function logText(e) {
-  console.log(this);
-}
-
-removeBtns.forEach((btn) => btn.addEventListener("click", logText));
