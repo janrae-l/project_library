@@ -22,6 +22,21 @@ Book.prototype.addBookToLibrary = function () {
   myLibrary.push(book);
 };
 
+// Book.prototype.readToggle = function () {
+//   read = `${
+//       const toggle = document.createElement("input");
+//       toggle.setAttribute("type", "checkbox");
+//       const slider = document.createElement("span");
+//       slider.classList.add("slider round");
+
+//       details.appendChild(toggle);
+//       details.appendChild(slider);
+//   }`
+
+//     }
+//   }
+// };
+
 const booKOne = new Book("Mockingjay", "Suzanne Collins", 390, "not read");
 
 console.log(booKOne.addBookToLibrary());
@@ -103,7 +118,9 @@ bigContainter.addEventListener("click", (event) => {
       readValue
     );
     bookInstance.addBookToLibrary();
+    bookInstance.readToggle().bind(bookInstance);
     loopAndDisplay(myLibrary);
+    // readToggle();
     dialog.close();
   } else if (event.target.id === "removeBtn") {
     console.log(event.target.textContent);
