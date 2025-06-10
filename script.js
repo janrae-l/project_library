@@ -126,3 +126,8 @@ bigContainter.addEventListener("click", (event) => {
     console.log(event.target.textContent);
   }
 });
+
+const slider = document.querySelector(".slider");
+slider.addEventListener("click", (e) => {
+  console.log(slider.dataset.checked);
+});
