@@ -129,5 +129,9 @@ bigContainter.addEventListener("click", (event) => {
 
 const slider = document.querySelector(".slider");
 slider.addEventListener("click", (e) => {
-  console.log(slider.dataset.checked);
+  const style = window.getComputedStyle(slider);
+  console.log(style.backgroundColor);
+
+  //No rgb(204, 204, 204)
+  //Yes rgb(33, 150, 243)
 });
