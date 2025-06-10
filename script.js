@@ -8,7 +8,7 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
-  //this.id = crypto.randomUUID();
+  this.id = crypto.randomUUID();
 }
 
 Book.prototype.addBookToLibrary = function () {
@@ -17,7 +17,7 @@ Book.prototype.addBookToLibrary = function () {
     author: this.author,
     pages: this.pages,
     read: this.read,
-    //id: this.id,
+    id: this.id,
   };
   myLibrary.push(book);
 };
@@ -61,7 +61,7 @@ const loopAndDisplay = function (arr) {
     removeBtn.textContent = "Remove Book";
     card.appendChild(removeBtn);
 
-    card.dataset.unique = crypto.randomUUID();
+    // card.dataset.unique = crypto.randomUUID();
     container.appendChild(card);
 
     const removeEvent = function () {
@@ -81,6 +81,26 @@ const loopAndDisplay = function (arr) {
     };
     removeEvent();
     for (let key in element) {
+      if (key === "read") {
+        const label = document.createElement("label");
+        label.classList.add("switch");
+        label.setAttribute("for", "read");
+        label.textContent = "read : ";
+
+        const input = document.createElement("input");
+        input.setAttribute("type", "checkbox");
+        input.classList.add("read");
+        input.setAttribute("id", "read");
+
+        const span = document.createElement("span");
+        span.setAttribute("class", "slider round");
+
+        label.appendChild(input);
+        label.appendChild(span);
+        card.appendChild(label);
+      } else if (key === "id") {
+        card.dataset.unique = element[key];
+      }
       const details = document.createElement("p");
       details.classList.add("details");
       details.textContent = `${key} : ${element[key]}`;
@@ -99,6 +119,9 @@ const dialog = document.querySelector("dialog");
 const confirmBtn = document.querySelector(".confirmBtn");
 confirmBtn.setAttribute("id", "confirmBtn");
 
+const slider = document.querySelector(".slider");
+const style = window.getComputedStyle(slider);
+
 bigContainter.addEventListener("click", (event) => {
   if (event.target.id === "newBook") {
     console.log(event.target.textContent);
@@ -109,7 +132,9 @@ bigContainter.addEventListener("click", (event) => {
     const titleValue = document.querySelector("#title").value;
     const authorValue = document.querySelector("#author").value;
     const pagesValue = document.querySelector("#pages").value;
-    const readValue = document.querySelector("#read").value;
+    const readValue = `${
+      style.backgroundColor === "rgb(33, 150, 243)"
+    } Yes ? No`;
 
     const bookInstance = new Book(
       titleValue,
@@ -118,7 +143,6 @@ bigContainter.addEventListener("click", (event) => {
       readValue
     );
     bookInstance.addBookToLibrary();
-    bookInstance.readToggle().bind(bookInstance);
     loopAndDisplay(myLibrary);
     // readToggle();
     dialog.close();
@@ -127,9 +151,7 @@ bigContainter.addEventListener("click", (event) => {
   }
 });
 
-const slider = document.querySelector(".slider");
 slider.addEventListener("click", (e) => {
-  const style = window.getComputedStyle(slider);
   console.log(style.backgroundColor);
 
   //No rgb(204, 204, 204)
