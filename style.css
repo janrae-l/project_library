@@ -30,10 +30,6 @@
   transition: 0.4s;
 }
 
-.slider:before,
-.slider:after {
-}
-
 .slider:before {
   position: absolute;
   content: "";
@@ -42,18 +38,6 @@
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-}
-
-input:checked + .slider:after {
-  position: absolute;
-  content: attr(data-checked);
-  height: 26px;
-  width: 26px;
-  right: 4px;
-  bottom: 4px;
-
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
