@@ -6,4 +6,10 @@
 /* Hide default HTML checkbox */
 input[type="checkbox"] {
   appearance: none;
+
+  width: 1em;
+  height: 1em;
+  border: 1px solid gray;
+  vertical-align: -3px;
+  margin: 0;
 }
