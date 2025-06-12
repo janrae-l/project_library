@@ -11,34 +11,36 @@
     <button class="new-book">New Book</button>
     <dialog>
       <form action="" class="card-form">
-        <label for="title"
-          >Title:
-          <input type="text" id="title" name="title" />
-        </label>
+        <p>
+          <label for="title"
+            >Title:
+            <input type="text" id="title" name="title" />
+          </label>
+        </p>
 
-        <label for="author"
-          >Author: <input type="text" id="author" name="author"
-        /></label>
+        <p>
+          <label for="author"
+            >Author: <input type="text" id="author" name="author"
+          /></label>
+        </p>
 
-        <label for="pages"
-          >Pages:
-          <input type="text" id="pages" name="pages" />
-        </label>
+        <p>
+          <label for="pages"
+            >Pages:
+            <input type="text" id="pages" name="pages" />
+          </label>
+        </p>
 
-        <label for="read" class="switch"
-          >Read:
-          <input type="checkbox" id="read" name="read" class="read" />
-          <span
-            class="slider round"
-            data-unchecked="No"
-            data-checked="Yes"
-          ></span>
-        </label>
-        <!-- <label for="read"
-          >Read:
-          <input type="text" id="read" name="read" />
-        </label> -->
-        <button class="confirmBtn">Confirm</button>
+        <p>
+          <label for="read" class="switch"
+            >Have you read this book?
+            <input type="checkbox" id="read" name="read" class="read" />
+          </label>
+        </p>
+        <div>
+          <button value="cancel" formmethod="dialog">Cancel</button>
+          <button class="confirmBtn">Confirm</button>
+        </div>
       </form>
     </dialog>
     <script src="./script.js"></script>
