@@ -30,7 +30,7 @@ Book.prototype.readToggle = function () {
   //object array,
   //loop thru the elements and find if the uniqueId matches the id where the slider event got clicked
   console.log(this.id);
-  this.read = this.read;
+  this.read = !this.read;
 };
 
 /*const booKOne = new Book("Mockingjay", "Suzanne Collins", 390, "not read");
@@ -46,9 +46,6 @@ console.log(myLibrary);*/
 //1 card for each book
 //How do I display the books in each card?
 //Do I set a concrete card for the sample details first?
-
-const slider = document.querySelector(".slider");
-const style = window.getComputedStyle(slider);
 
 const bigContainter = document.querySelector("body");
 
@@ -136,7 +133,7 @@ function createCard(book) {
   informContainer.appendChild(pages);
 
   const read = document.createElement("p");
-  read.textContent = book.read ? "Not yet read" : "Already read";
+  read.textContent = book.read ? "Already read" : "Not yet read";
   informContainer.appendChild(read);
 
   card.dataset.unique = book.id;
@@ -151,6 +148,7 @@ function createCard(book) {
 
   toggleBtn.addEventListener("click", (event) => {
     book.readToggle();
+    console.log(book.read);
 
     toggleBtn.textContent = book.read ? "Mark as unread" : "Mark as read";
 
